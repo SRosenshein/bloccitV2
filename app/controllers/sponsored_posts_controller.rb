@@ -9,10 +9,7 @@ class SponsoredPostsController < ApplicationController
   end
   
   def create
-    @sponsored_post = SponsoredPost.new
-    @sponsored_post.title = params[:sponsored_post][:title]
-    @sponsored_post.body = params[:sponsored_post][:body]
-    @sponsored_post.price = params[:sponsored_post][:price]
+    @sponsored_post = SponsoredPost.new(sponsored_post_params)
     @topic = Topic.find(params[:topic_id])
     @sponsored_post.topic = @topic
     
@@ -55,5 +52,10 @@ class SponsoredPostsController < ApplicationController
       render :show
     end
   end
+  
+  private
+    def sponsored_post_params
+      params.require(:sponsored_post).permit(:title, :body, :price)
+    end
   
 end
