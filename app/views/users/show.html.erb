@@ -32,3 +32,6 @@
 <% else %>
     <p><%= @user.name %> has not submitted any comments yet.</p>
 <% end %>
+
+<h2>Favorited Posts</h2>
+<%= render partial: 'users/favorites', collection: @user.favorites %>
